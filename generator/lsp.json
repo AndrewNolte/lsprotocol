@@ -15150,6 +15150,18 @@
                     "value": "swift"
                 },
                 {
+                    "name": "SystemVerilog",
+                    "value": "systemverilog"
+                },
+                {
+                    "name": "SystemVerilogHeader",
+                    "value": "systemverilogheader"
+                },
+                {
+                    "name": "Verilog",
+                    "value": "verilog"
+                },
+                {
                     "name": "TypeScript",
                     "value": "typescript"
                 },
