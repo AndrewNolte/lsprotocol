@@ -9,7 +9,7 @@ import generator.model as model
 from .rust_commons import get_name
 
 
-def generate_test_code(spec: model.LSPModel, test_path: pathlib.Path) -> str:
+def generate_test_code(spec: model.LSPModel, test_path: pathlib.Path) -> None:
     """Generate the code for the given spec."""
     lines = []
     for request in spec.requests:

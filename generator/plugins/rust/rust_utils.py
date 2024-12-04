@@ -38,7 +38,7 @@ def generate_from_spec(spec: model.LSPModel, output_dir: str, test_dir: str) -> 
         generate_test_code(spec, test_path)
 
 
-def generate_package_code(spec: model.LSPModel) -> List[str]:
+def generate_package_code(spec: model.LSPModel) -> dict[str, list[str]]:
     return {
         "src/lib.rs": generate_lib_rs(spec),
     }
