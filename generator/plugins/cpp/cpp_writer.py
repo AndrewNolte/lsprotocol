@@ -44,6 +44,7 @@ def write_docs(func):
         if args[0].documentation is not None:
             self.block_comment(args[0].documentation)
         func(self, *args, **kwargs)
+        self.writeln()
 
     return wrapper
 
@@ -152,7 +153,9 @@ class CppWriter:
         """
         Write a comment line
         """
-        self.write("/** " + comment + " */" + "\n")
+        # self.write("/** " + comment + " */" + "\n")
+        for line in comment.split("\n"):
+            self.write("/// " + line + "\n")
 
     @contextmanager
     def curly(self, before: str):
