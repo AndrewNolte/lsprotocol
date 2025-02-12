@@ -238,7 +238,7 @@ class SymbolBasket:
 
             # set only impl-
             # strict_deps |= n_strict_deps
-            for dep in n_strict_deps:
+            for dep in sorted(n_strict_deps, key=lambda x: x.name):
                 if dep not in strict_deps:
                     strict_deps.add(dep)
                     order_deps.append(dep)
