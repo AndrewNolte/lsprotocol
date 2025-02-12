@@ -211,8 +211,12 @@ class CppWriter:
     @write_docs
     def write_property(self, member: model.Property, parent: model.Structure) -> None:
         if member.optional:
+            # SelectionRange should be the only one that does this
             wrapper_type = (
-                "std::optional" if member.type != parent else "std::unique_ptr"
+                "std::unique_ptr"
+                if isinstance(member.type, model.ReferenceType)
+                and member.type.name == parent.name
+                else "std::optional"
             )
             self.writeln(
                 f"{wrapper_type}<{lsp_to_cpp_type(member.type)}> {member.name};"

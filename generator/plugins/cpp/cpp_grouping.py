@@ -223,7 +223,7 @@ class SymbolBasket:
                     strict_deps.add(sym)
 
         s_len = 0
-        order_deps = list(strict_deps)
+        order_deps = sorted(list(strict_deps), key=lambda x: x.name)
         # Frontier expand deps
         while True:
             if len(strict_deps) == s_len:
