@@ -11,6 +11,8 @@ from .cpp_writer import CppWriter
 
 COMMON_INCLUDES = [
     "<variant>",
+    "<optional>",
+    "<vector>",
     "json_types.h",
 ]
 LSP_TYPES = "lsptypes.h"

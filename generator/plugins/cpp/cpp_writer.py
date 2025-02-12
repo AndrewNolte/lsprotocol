@@ -209,8 +209,16 @@ class CppWriter:
         self.writeln("")
 
     @write_docs
-    def write_property(self, member: model.Property) -> None:
-        self.writeln(f"{lsp_to_cpp_type(member.type)} {member.name};")
+    def write_property(self, member: model.Property, parent: model.Structure) -> None:
+        if member.optional:
+            wrapper_type = (
+                "std::optional" if member.type != parent else "std::unique_ptr"
+            )
+            self.writeln(
+                f"{wrapper_type}<{lsp_to_cpp_type(member.type)}> {member.name};"
+            )
+        else:
+            self.writeln(f"{lsp_to_cpp_type(member.type)} {member.name};")
 
     @write_docs
     def write_struct(self, struct: model.Structure) -> None:
@@ -223,7 +231,7 @@ class CppWriter:
 
         with self.curly(header):
             for member in struct.properties:
-                self.write_property(member)
+                self.write_property(member, parent=struct)
 
     @write_docs
     def write_type_alias(self, type_alias: model.TypeAlias) -> None:
